@@ -3,7 +3,7 @@ There are two emitters `simpleEmitter` `emitter`.
 
 # 1. simpleEmitter
 
-A simple emitter with no namespace.
+A simple emitter with no namespace
 
 ```ts
 import {simpleEmitter} from "./emitters";
