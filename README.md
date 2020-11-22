@@ -1,7 +1,8 @@
 A really simple event emitter that is not multifunctional.  
-Doesn't even have an event namespace.
 
 # usage
+
+## 1. simpleEmitter
 
 ```ts
 // emitter<CallbackParamsType>
@@ -15,3 +16,5 @@ evEmitter1.off();
 evEmitter2.on(({id, age}) => {...});
 evEmitter2.emit({id: "john", age: 28 });
 ```
+
+## 2. emitter
