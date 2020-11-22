@@ -1,20 +1,30 @@
-A really simple event emitter that is not multifunctional.  
+A really simple event emitter.  
+There are two emitters `simpleEmitter` `emitter`.
 
-# usage
+# 1. simpleEmitter
 
-## 1. simpleEmitter
+A simple emitter with no namespace.
 
 ```ts
-// emitter<CallbackParamsType>
-const evEmitter1 = emitter<string>();
-const evEmitter2 = emitter<{id: string, age?: number}>();
+import {simpleEmitter} from "./emitters";
 
-evEmitter1.on((name) => {...});
-evEmitter1.emit("mike");
-evEmitter1.off();
+// define: emitter<CallbackParamsType>
+const emitter = simpleEmitter<{id: string, age?: number}>();
 
-evEmitter2.on(({id, age}) => {...});
-evEmitter2.emit({id: "john", age: 28 });
+// on: return off function
+const off = emitter.on(({id, age}) => {...});
+
+emitter.emit({id: "john", age: 28 });
+
+// cleanup: There are two ways.
+off();
+emitter.off();
 ```
 
-## 2. emitter
+# 2. emitter
+
+Normal emitter with namespace.
+
+```ts
+
+```
