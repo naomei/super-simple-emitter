@@ -1,7 +1,12 @@
-import { emitter } from "./emitters";
+import { emitter, createAction} from "./emitters";
 
+const actionA = createAction<number>("name");
 
+emitter.on(actionA, (p) => {
+  console.log(p);
+});
 
+emitter.emit(actionA, 10);
 
 describe("", () => {
   it("", () => {})

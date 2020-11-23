@@ -1,55 +1,44 @@
-/**
- * simpleEmitter
- */
-export const simpleEmitter = <P = any>() => {
-  let list: ((params?: P) => void)[] = [];
-  const off = () => list = [];
+type Action<P> = {type: string, payload?: P};
+type Callbacks = any[];
 
+const createEmitter = () => {
+  const map: Record<string, Callbacks> = {};
+
+  const find = (type: string): Callbacks | undefined => map[type];
+  
+  const off = (type: string) => {
+    const found = find(type);
+
+    found && delete map[type];
+  }
 
   return {
-    on: (fn: (params?: P) => void) => {
-      list.push(fn);
-      
-      return off;
+    on: <A extends Action<unknown>>(action: A, callback: (payload: A["payload"]) => void) => {
+      const found = find(action.type);
+
+      if(found) {
+        map[action.type].push(callback);
+      } else {
+        map[action.type] = [callback];
+      }
+
+      return () => {
+        off(action.type);
+      }
     },
-    off: () => {
-      off();
+    emit: <A extends Action<unknown>>(action: A, payload: A["payload"]) => {
+      const found = find(action.type);
+
+      found?.forEach(d => d(payload));
     },
-    emit: (params?: P) => {
-      list.forEach((d) => d(params));
+    off: <A extends Action<unknown>>(action: A) => {
+      off(action.type);
     },
-  };
-};
-
-/**
- * 
- */
-// export const emitter = <P = any>() => {
-
-// };
-
-type Action<T, P> = {type: T, payload?: P};
-
-const createAction = <P>(type: string): Action<string, P> => {
-  return {type};
-};
-
-type CreateAction = ReturnType<typeof createAction>;
-
-export const emitter = {  
-  on: <A extends CreateAction>(action: A, fn?: (payload: A["payload"]) => void) => {
-
-  },
-  emit: <A extends CreateAction>(action: A, payload: A["payload"]) => {
-
   }
 }
 
+export const createAction = <P>(type: string): Action<P> => {
+  return {type};
+};
 
-// const e = createEmitter();
-
-// const ac = createAction<number>("name");
-
-
-// e.on(ac, (p) => {})
-// e.emit(ac, 10)
+export const emitter = createEmitter();
