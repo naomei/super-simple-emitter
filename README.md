@@ -13,6 +13,7 @@ emitter.on(userAction, (payload) => {
 });
 
 emitter.emit(userAction, {id: "abc", age: 28});
+```
 
 # API
 
