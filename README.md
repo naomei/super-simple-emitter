@@ -1,30 +1,43 @@
-A really simple event emitter.  
-There are two emitters `simpleEmitter` `emitter`.
+A simple **type-safe** event emitter.  
 
-# 1. simpleEmitter
 
-A simple emitter with no namespace
+# usage
 
 ```ts
-import {simpleEmitter} from "./emitters";
+import {emitter, createAction} from "./emitter";
 
-// define: emitter<CallbackParamsType>
-const emitter = simpleEmitter<{id: string, age?: number}>();
+const userAction = createAction<{id: string, age: number}>("user");
 
-// on: return off function
-const off = emitter.on(({id, age}) => {...});
+emitter.on(userAction, (payload) => {
+  // payload: {id: string, age: number}
+});
 
-emitter.emit({id: "john", age: 28 });
+emitter.emit(userAction, {id: "abc", age: 28});
 
-// cleanup: There are two ways.
-off();
-emitter.off();
+# API
+
+## on
+
+subscribe to action.
+
+```ts
+emitter.on(action, (payload) => {});
 ```
 
-# 2. emitter
+## off
 
-Normal emitter with namespace.
+unsubscribe to action.
 
 ```ts
+emitter.off(action);
 
+// or, use "on" return function
+const off = emitter.on(...);
+off();
+```
+
+## emit
+
+```ts
+emitter.emit(action, payload);
 ```
