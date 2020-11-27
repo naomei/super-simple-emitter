@@ -1,3 +1,5 @@
+# !WIP!
+
 A simple **type-safe** event emitter.  
 
 
