@@ -1,0 +1,1 @@
+(()=>{var d=()=>{let n={},o=t=>n[t],r=t=>{let e=o(t);e&&delete n[t]};return{on:(t,e)=>{let s=o(t.type);return s?n[t.type].push(e):n[t.type]=[e],()=>{r(t.type)}},emit:(t,e)=>{let s=o(t.type);s?.forEach(c=>c(e))},off:t=>{r(t.type)}}},i=n=>({type:n}),a=d();})();

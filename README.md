@@ -1,7 +1,14 @@
-# !WIP!
+![dep](https://badgen.net/bundlephobia/dependency-count/super-simple-emitter)
+![min](https://img.shields.io/bundlephobia/min/super-simple-emitter)
+![minZip](https://img.shields.io/bundlephobia/minzip/super-simple-emitter)
 
 A simple **type-safe** event emitter.  
 
+# install
+
+```
+npm i super-simple-emitter -S
+```
 
 # usage
 
