@@ -1,6 +1,6 @@
 {
   "name": "super-simple-emitter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "super-simple and type-safe event emitter.",
   "main": "dist/index.js",
   "author": "Naohiro Urayama <naohiro.urayama@gmail.com>",
